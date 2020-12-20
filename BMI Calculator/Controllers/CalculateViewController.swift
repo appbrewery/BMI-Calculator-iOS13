@@ -14,6 +14,10 @@ class CalculateViewController: UIViewController {
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     
+//    var bmiValue = "0.0"
+    var calculatorBrain = CalculatorBrain()
+ 
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
@@ -37,12 +41,32 @@ class CalculateViewController: UIViewController {
         let height = heightSlider.value
         let weight = weightSlider.value
     
-        let bmi = weight / pow(height, 2)
+        calculatorBrain.calculateBMI(height: height, weight: weight)
+
         
-        let secondVC = SecondViewController()
-        secondVC.bmiValue = String(format: "%.1f", bmi)
+        // Manual way to create modal pop up on a custom class
+//        let secondVC = SecondViewController()
+//        secondVC.bmiValue = String(format: "%.1f", bmi)
+//        self.present(secondVC, animated: true, completion: nil)
         
-        self.present(secondVC, animated: true, completion: nil)
+        
+        // for navigating btw screens that have a segue created on Main.storyboard
+        self.performSegue(withIdentifier: "goToResults", sender: self)
+        
+      
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        //print("sender", sender.bmi!)
+        
+        if segue.identifier == "goToResults" {
+            // narrow down the data type and specify the exact type the desination will be
+            let destinationVC = segue.destination as! ResultsViewController
+            destinationVC.bmiValue = calculatorBrain.getBMIValue()
+            destinationVC.advice = calculatorBrain.getAdvice()
+            destinationVC.color = calculatorBrain.getColor()
+                
+        }
     }
     
 }
