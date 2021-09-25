@@ -23,6 +23,14 @@ class ViewController: UIViewController {
         putLabel()
     }
     
+    @IBAction func pressCalculate(_ sender: UIButton) {
+        let weight = Float(weightSlider.value)
+        let height = Float(heightSlider.value)
+        let bmi = weight/powf(height, 2)
+//        I use powf instead of pow since it is more accurate as I use float
+        print(bmi)
+    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
