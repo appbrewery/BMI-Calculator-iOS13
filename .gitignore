@@ -1,0 +1,4 @@
+# list of ignored changes in git
+# user log data
+*.xcuserdatad
+
