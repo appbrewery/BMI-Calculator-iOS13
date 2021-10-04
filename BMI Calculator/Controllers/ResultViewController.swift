@@ -16,7 +16,11 @@ class ResultViewController: UIViewController {
         // Do any additional setup after loading the view.
     }
     
-
+    @IBAction func recalculateClicked(_ sender: UIButton) {
+//        dismiss the view and back to calculate view
+        self.dismiss(animated: true, completion: nil)
+    }
+    
     /*
     // MARK: - Navigation
 
