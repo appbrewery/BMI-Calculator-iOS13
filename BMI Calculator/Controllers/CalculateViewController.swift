@@ -10,6 +10,8 @@ import UIKit
 
 class CalculateViewController: UIViewController {
     
+    var bmi : Float = 0.0
+    
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
     @IBOutlet weak var heightSlider: UISlider!
@@ -26,7 +28,7 @@ class CalculateViewController: UIViewController {
     @IBAction func pressCalculate(_ sender: UIButton) {
         let weight = Float(weightSlider.value)
         let height = Float(heightSlider.value)
-        let bmi = weight/powf(height, 2)
+        bmi = weight/powf(height, 2)
 //        I use powf instead of pow since it is more accurate as I use float
         print(bmi)
 //        perform segue to put result view controller above
@@ -43,7 +45,13 @@ class CalculateViewController: UIViewController {
         heightLabel.text = String(format: "%.2f", heightSlider.value) + "m"
         weightLabel.text = String(format: "%.0f", weightSlider.value) + "kg"
     }
-
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        guard let resultVC = segue.destination as? ResultViewController else {return}
+        
+//        pass the bmi number
+        resultVC.bmiNumber = bmi
+    }
 
 }
 

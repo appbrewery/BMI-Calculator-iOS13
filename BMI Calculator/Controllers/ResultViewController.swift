@@ -9,11 +9,17 @@
 import UIKit
 
 class ResultViewController: UIViewController {
+    
+//    prepare bmi variable to accept bmi number from calculate
+    var bmiNumber:Float = 0.0
 
+    @IBOutlet weak var bmi_label: UILabel!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
 
         // Do any additional setup after loading the view.
+        updateUI()
     }
     
     @IBAction func recalculateClicked(_ sender: UIButton) {
@@ -21,14 +27,8 @@ class ResultViewController: UIViewController {
         self.dismiss(animated: true, completion: nil)
     }
     
-    /*
-    // MARK: - Navigation
-
-    // In a storyboard-based application, you will often want to do a little preparation before navigation
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        // Get the new view controller using segue.destination.
-        // Pass the selected object to the new view controller.
+    func updateUI()  {
+//        updating the UI on Result View.
+        bmi_label.text = String(format: "%.2f", bmiNumber)
     }
-    */
-
 }
