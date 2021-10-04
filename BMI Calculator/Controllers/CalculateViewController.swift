@@ -29,6 +29,8 @@ class CalculateViewController: UIViewController {
         let bmi = weight/powf(height, 2)
 //        I use powf instead of pow since it is more accurate as I use float
         print(bmi)
+//        perform segue to put result view controller above
+        performSegue(withIdentifier: "resultSegue", sender: self)
     }
     
     override func viewDidLoad() {
