@@ -8,7 +8,7 @@
 
 import Foundation
 protocol BmiCalculator {
-    var bmi: Float? {get set}
+    var bmi: Float {get set}
     
     mutating func calculateBmi(weight:Float, height:Float) -> Float
     func putBmi() -> String
