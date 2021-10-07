@@ -10,7 +10,7 @@ import UIKit
 
 class CalculateViewController: UIViewController {
     
-    var bmi : Float = 0.0
+    var calculator : BmiCalculator = CalculatorBrain()
     
     @IBOutlet weak var heightLabel: UILabel!
     @IBOutlet weak var weightLabel: UILabel!
@@ -28,9 +28,9 @@ class CalculateViewController: UIViewController {
     @IBAction func pressCalculate(_ sender: UIButton) {
         let weight = Float(weightSlider.value)
         let height = Float(heightSlider.value)
-        bmi = weight/powf(height, 2)
-//        I use powf instead of pow since it is more accurate as I use float
-        print(bmi)
+//        calculate bmi
+        calculator.calculateBmi(weight: weight, height: height)
+        print(calculator.bmi ?? 0.0)
 //        perform segue to put result view controller above
         performSegue(withIdentifier: "resultSegue", sender: self)
     }
@@ -50,7 +50,7 @@ class CalculateViewController: UIViewController {
         guard let resultVC = segue.destination as? ResultViewController else {return}
         
 //        pass the bmi number
-        resultVC.bmiNumber = bmi
+        resultVC.bmiNumber = calculator.bmi ?? 0.0
     }
 
 }
