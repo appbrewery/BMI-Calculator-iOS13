@@ -50,7 +50,7 @@ class CalculateViewController: UIViewController {
         guard let resultVC = segue.destination as? ResultViewController else {return}
         
 //        pass the bmi number
-        resultVC.bmiNumber = calculator.bmi ?? 0.0
+        resultVC.calcResult = calculator
     }
 
 }

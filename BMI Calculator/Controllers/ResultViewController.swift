@@ -10,8 +10,7 @@ import UIKit
 
 class ResultViewController: UIViewController {
     
-//    prepare bmi variable to accept bmi number from calculate
-    var bmiNumber:Float = 0.0
+    var calcResult: BmiCalculator?
 
     @IBOutlet weak var bmi_label: UILabel!
     
@@ -29,6 +28,6 @@ class ResultViewController: UIViewController {
     
     func updateUI()  {
 //        updating the UI on Result View.
-        bmi_label.text = String(format: "%.2f", bmiNumber)
+        bmi_label.text = String(format: "%.2f", calcResult?.bmi ?? 0.0)
     }
 }
