@@ -8,21 +8,21 @@
 
 import Foundation
 protocol BmiCalculator {
-    var bmi: Float {get set}
+    var bmi: Float? {get set}
     
     mutating func calculateBmi(weight:Float, height:Float)
     func putBmi() -> String
 }
 
 struct CalculatorBrain: BmiCalculator {
-    var bmi: Float = 0.0
+    var bmi: Float?
     
     mutating func calculateBmi(weight: Float, height: Float) {
         bmi = weight/powf(height, 2)
     }
     
     func putBmi() -> String {
-        return String(format: "%.2f", bmi)
+        return String(format: "%.2f", bmi ?? 0.0)
     }
     
 }
