@@ -13,6 +13,7 @@ class ResultViewController: UIViewController {
     var calcResult: BmiCalculator?
 
     @IBOutlet weak var bmi_label: UILabel!
+    @IBOutlet weak var adviceLabel: UILabel!
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -29,5 +30,18 @@ class ResultViewController: UIViewController {
     func updateUI()  {
 //        updating the UI on Result View.
         bmi_label.text = String(format: "%.2f", calcResult?.bmi ?? 0.0)
+//        update the advice
+        adviceLabel.text = calcResult?.advise() ?? ""
+//       set the background color
+        let bgColor = calcResult?.bmiScale()
+        if (bgColor == "underweight") {
+            view.backgroundColor = UIColor.brown
+        } else if (bgColor == "normal"){
+            view.backgroundColor = UIColor.green
+        } else if (bgColor == "overweight") {
+            view.backgroundColor = UIColor.red
+        } else {
+            view.backgroundColor = UIColor.white
+        }
     }
 }
